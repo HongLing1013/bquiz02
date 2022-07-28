@@ -58,13 +58,15 @@ function __construct($table)
     $sql="select * from $this->table WHERE ";
       if(is_array($arg)){
         foreach($arg as $key => $value){
-          $tmp[]="`$arg`='$value'";
+          $tmp[]="`$key`='$value'";
         }
         $sql .= join(" AND " ,$tmp);
       }else{
         $sql .=" `id` = '$arg' ";
       }
+
     return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
+
   }
 
   public function q($sql){
@@ -75,7 +77,7 @@ function __construct($table)
     $sql="DELETE * from $this->table where ";
       if(is_array($arg)){
         foreach($arg as $key => $value){
-          $tmp[]="`$arg`='$value'";
+          $tmp[]="`$key`='$value'";
         }
         $sql .= join(" AND " ,$tmp);
       }else{
@@ -129,5 +131,26 @@ function dd($array){
 }
 
 $Total=new DB('total');
-print_r($Total->find(1));
+
+/* 判斷是否登入
+ * 用來計算來訪人數 */
+if(!isset($_SESSION['total'])){
+  $chkDate=$Total->math('count','id',['date'=>date("Y-m-d")]);
+  if($chkDate>=1){
+    // 人數總和=資料庫內的人數->
+      $total=$Total->find(['date'=>date("Y-m-d")]);
+        // 如果有人進來網站的話 就要+1
+      $total['total']=$total['total']+1;
+        //Total這個物件 要把這個$total的資料存回去資料庫
+      $Total->save($total);
+        // 如果已經加過瀏覽人次 就不要再次增加
+      $_SESSION['total']=1;
+  }else{
+      $Total->save(['date'=>date("Y-m-d"),'total'=>1]);
+      $_SESSION['total']=1;
+  }
+}
+
+
+
 ?>

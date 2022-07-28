@@ -21,3 +21,32 @@
     </tr>
   </table>
 </fieldset>
+
+<script>
+  function login(){
+    // 取得帳號密碼的value
+    let acc=$('#acc').val();
+    let pw=$('#pw').val();
+    // 把帳號傳出去chk_acc.php裡面檢查這個帳號是否在資料庫 再回傳
+    $.post("./api/chk_acc.php",{acc},(res)=>{
+      // 如果傳回來的是數字1 代表有這個帳號
+      if(parseInt(res)===1){
+        $.post("./api/chk_pw.php",{acc,pw},(res)=>{
+          // 如果傳回來的是數字1 代表有這個密碼
+          if(parseInt(res)===1){
+            // 如果是管理者帳號的話 導向後台
+            if(acc==='admin'){
+              location.href='back.php';
+            }else{
+              location.href='index.php';
+            }
+          }else{
+            alert("密碼錯誤");
+          }
+        })
+      }else{
+        alert("查無帳號");
+      }
+    });
+  }
+</script>

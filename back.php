@@ -1,5 +1,11 @@
 ﻿<?php
 include_once "base.php";
+// 如果沒有session的話不能進來
+if(!isset($_SESSION['user']) || $_SESSION['user']!=='admin'){
+  to("index.php");
+  exit();
+}
+
 ?>
 <!DOCTYPE html
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

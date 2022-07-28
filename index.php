@@ -22,9 +22,10 @@ include_once "base.php";
   </div>
 
   <div id="all">
-  <div id="title">
-        <?=date("m 月 d 號 l");?> | 今日瀏覽: <?=$Total->find(['date'=>date("Y-m-d")])['total'];?> | 累積瀏覽: <?=$Total->math('sum','total');?>        
-		<a href="index.php" style='float:right'>回首頁</a>
+    <div id="title">
+      <?=date("m 月 d 號 l");?> | 今日瀏覽: <?=$Total->find(['date'=>date("Y-m-d")])['total'];?> | 累積瀏覽:
+      <?=$Total->math('sum','total');?>
+      <a href="index.php" style='float:right'>回首頁</a>
     </div>
     <div id="title2" title="健康促進網-回首頁" onclick="location.href='index.php'">
       <img src="./icon/02B01.jpg" alt="">
@@ -41,16 +42,39 @@ include_once "base.php";
       <div class="hal" id="main">
         <div>
           <!-- 製作跑馬燈 -->
-          <marquee style="width:80%; display:inline-block;">
-              請民眾踴躍投稿電子報，讓電子報成為大家相互交流、分享的園地！詳見最新文章
+          <marquee style="width:78%; display:inline-block;">
+            請民眾踴躍投稿電子報，讓電子報成為大家相互交流、分享的園地！詳見最新文章
           </marquee>
           <!-- 跑馬燈結束 -->
-          <span style="width:18%; display:inline-block;">
+          <span style="width:20%; display:inline-block;">
+            <?php
+              // 如果我有session的話 就是會員
+              if(isset($_SESSION['user'])){
+                // 如果是管理者
+                if($_SESSION['user']==='admin'){
+            ?>
+            歡迎，<?=$_SESSION['user'];?>
+            <button onclick="location.htef='back.php'">管理</button>
+            <button onclick='logout()'>登出</button>
+            <?php
+            }else{
+
+            ?>
+            歡迎，<?=$_SESSION['user'];?>
+            <button onclick='logout()'>登出</button>
+            <?php
+            
+          }
+              }else{
+                ?>
             <a href="?do=login">會員登入</a>
+            <?php
+              }
+              ?>
           </span>
           <div class="content">
 
-          <!-- 預防用戶亂塞資料try網站 -->
+            <!-- 預防用戶亂塞資料try網站 -->
             <?php
             /* 方法一
                if(isset($_GET['do'])){

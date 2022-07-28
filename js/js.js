@@ -19,3 +19,10 @@ function good(id,type,user)
 		}
 	})
 }
+
+
+function logout(){
+	$.get("./api/logout.php",()=>{
+		location.reload();
+	})
+}

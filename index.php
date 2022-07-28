@@ -20,7 +20,7 @@
 
   <div id="all">
     <div id="title">
-      00 月 00 號 Tuesday | 今日瀏覽: 1 | 累積瀏覽: 36 </div>
+      <?=date("m 月 d 號 l");?> | 今日瀏覽: 1 | 累積瀏覽: 36 </div>
     <div id="title2">
 
     </div>
@@ -32,13 +32,20 @@
         <a class="blo" href="?do=know">講座訊息</a>
         <a class="blo" href="?do=que">問卷調查</a>
       </div>
-
-      <!-- 中間 -->
-      <?php
-      include "./front/main.php";
-      ?>
-      <!-- 中間 -->
-
+      <div class="hal" id="main">
+        <div>
+          <!-- 製作跑馬燈 -->
+          <marquee style="width:80%; display:inline-block;">
+              請民眾踴躍投稿電子報，讓電子報成為大家相互交流、分享的園地！詳見最新文章
+          </marquee>
+          <!-- 跑馬燈結束 -->
+          <span style="width:18%; display:inline-block;">
+            <a href="?do=login">會員登入</a>
+          </span>
+          <div class="content">
+          </div>
+        </div>
+      </div>
     </div>
     <div id="bottom">
       本網站建議使用：IE9.0以上版本，1024 x 768 pixels 以上觀賞瀏覽 ， Copyright © 2022健康促進網社群平台 All Right Reserved

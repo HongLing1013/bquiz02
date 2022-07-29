@@ -134,6 +134,7 @@ function dd($array){
 $Total=new DB('total');
 $User=new DB('user');
 $News=new DB('news');
+$Que=new DB('que');
 
 /* 判斷是否登入
  * 用來計算來訪人數 */

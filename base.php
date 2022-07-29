@@ -74,7 +74,7 @@ function __construct($table)
   }
 
   public function del($arg){
-    $sql="DELETE * from $this->table where ";
+    $sql="DELETE from $this->table where ";
       if(is_array($arg)){
         foreach($arg as $key => $value){
           $tmp[]="`$key`='$value'";
@@ -83,6 +83,7 @@ function __construct($table)
       }else{
         $sql .=" `id` = '$arg' ";
       }
+      echo $sql;
     return $this->pdo->exec($sql);
   }
 

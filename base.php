@@ -44,13 +44,13 @@ function __construct($table)
         $sql .=" WHERE " . join(" AND " ,$tmp);
       }else{
         // $sql = $sql . $arg[0]; 可以簡化成下面這樣
-        $sql .=$arg[0];
+        $sql .= $arg[0];
       }
     }
     if(isset($arg[1])){
-      $sql .=$arg[1];
+      $sql .= $arg[1];
     }
-    echo $sql;
+    // echo $sql;
     return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
   }
 
@@ -91,7 +91,7 @@ function __construct($table)
     if(isset($array['id'])){
       foreach($array as $key => $value){
         if($key!='id'){
-          $tmp[]="`$array`='$value'";
+          $tmp[]="`$key`='$value'";
         }
       }
       $sql="UPDATE $this->table SET ".join(',',$tmp)." WHERE `id` = '{$array['id']}'";
@@ -133,6 +133,7 @@ function dd($array){
 
 $Total=new DB('total');
 $User=new DB('user');
+$News=new DB('news');
 
 /* 判斷是否登入
  * 用來計算來訪人數 */

@@ -1,6 +1,9 @@
 <?php
 include_once "../base.php";
 
+// 使用一行讓POST跟GET都可以接收此值
+$acc=$_POST['acc']??$_GET['acc'];
+
 // 方法三不需要這一行
 // $acc=$_POST['acc'];
 
@@ -23,7 +26,7 @@ include_once "../base.php";
 /* 方法三
  * 方法二的簡化
  * */
-echo $User->math('count','id',['acc'=>$_POST['acc']]);
+echo $User->math('count','id',['acc'=>$acc]);
 
 
 

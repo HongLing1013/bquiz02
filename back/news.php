@@ -1,5 +1,5 @@
 <form action="./api/news.php" method="post">
-<table class="tab cent ct">
+<table style="width:80%;margin:auto;text-align:center">
   <tr>
     <th width="10%">編號</th>
     <th width="70%">標題</th>

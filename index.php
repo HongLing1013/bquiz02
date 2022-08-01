@@ -2,12 +2,28 @@
 include_once "base.php";
 ?>
 <!DOCTYPE html
-  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0039) -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 
+<style>
+    .modal {
+        background: rgba(51, 51, 51, 0.8);
+        color: #FFF;
+        height: 410px;
+        width: 500px;
+        position: fixed;
+        display: none;
+        z-index: 9999;
+        overflow: auto;
+		padding:5px;
+		box-shadow: 0 0 10px #ccc;
+    }
+    </style>
+
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
   <title>健康促進網</title>
   <link href="./css/css.css" rel="stylesheet" type="text/css">
@@ -16,15 +32,12 @@ include_once "base.php";
 </head>
 
 <body>
-  <div id="alerr"
-    style="background:rgba(51,51,51,0.8); color:#FFF; min-height:100px; width:300px; position:fixed; display:none; z-index:9999; overflow:auto;">
-    <pre id="ssaa"></pre>
-  </div>
+  
 
   <div id="all">
     <div id="title">
-      <?=date("m 月 d 號 l");?> | 今日瀏覽: <?=$Total->find(['date'=>date("Y-m-d")])['total'];?> | 累積瀏覽:
-      <?=$Total->math('sum','total');?>
+    <?=date("m 月 d 號 l");?> | 今日瀏覽: <?=$Total->find(['date'=>date("Y-m-d")])['total'];?> | 累積瀏覽:
+            <?=$Total->math('sum','total');?>
       <a href="index.php" style='float:right'>回首頁</a>
     </div>
     <div id="title2" title="健康促進網-回首頁" onclick="location.href='index.php'">

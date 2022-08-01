@@ -32,7 +32,7 @@
                 <span><?=$row['good'];?></span>個人說<img src="./icon/02B03.jpg" style="width:25px">
                 <?php
                 if(isset($_SESSION['user'])){
-                    echo " - <a class='great' href='#'>讚</a>";
+                    echo " - <a class='great' href='#' data-id='{$row['id']}'>讚</a>";
                 }
                 ?>
             </td>
@@ -96,15 +96,19 @@ $(".pop").hover(
  */
 
 $(".great").on("click",function(){
-    let text=$(this).text()
-    let num=parseInt($(this).siblings('span').text());
-    if(text==='讚'){
-        text=$(this).text('收回讚')
-        $(this).siblings('span').text(num+1)
-    }else{
-        text=$(this).text('讚')
-        $(this).siblings('span').text(num-1)
-    }
+    let type=$(this).text()
+    let num=parseInt($(this).siblings('span').text())
+    let id=$(this).data('id')
+    $.post('./api/good.php',{id,type},()=>{
+        if(type==='讚'){
+            $(this).text('收回讚')
+            $(this).siblings('span').text(num+1)
+        }else{
+            $(this).text('讚')
+            $(this).siblings('span').text(num-1)
+        }
+    })
 })
+
 
 </script>

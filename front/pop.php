@@ -28,7 +28,14 @@
                     <?=nl2br($row['text']);?>
                 </div>
             </td>
-            <td></td>
+            <td>
+                <span><?=$row['good'];?></span>個人說<img src="./icon/02B03.jpg" style="width:25px">
+                <?php
+                if(isset($_SESSION['user'])){
+                    echo " - <a class='great' href='#'>讚</a>";
+                }
+                ?>
+            </td>
         </tr>
 
         <?php 
@@ -87,4 +94,17 @@ $(".pop").hover(
     }
 )
  */
+
+$(".great").on("click",function(){
+    let text=$(this).text()
+    let num=parseInt($(this).siblings('span').text());
+    if(text==='讚'){
+        text=$(this).text('收回讚')
+        $(this).siblings('span').text(num+1)
+    }else{
+        text=$(this).text('讚')
+        $(this).siblings('span').text(num-1)
+    }
+})
+
 </script>

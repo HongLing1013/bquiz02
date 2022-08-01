@@ -25,7 +25,13 @@
                 <span class="summary"><?=mb_substr($row['text'],0,20);?>...</span>
                 <span class="full" style='display:none'><?=nl2br($row['text']);?></span>
             </td>
-            <td></td>
+            <td>                
+                <?php
+                if(isset($_SESSION['user'])){
+                    echo " - <a class='great' href='#'>讚</a>";
+                }
+                ?>
+            </td>
         </tr>
 
         <?php 
@@ -57,6 +63,18 @@
 <script>
 $(".title").on("click",function(){
     $(this).next().children().toggle()
+})
+
+$(".great").on("click",function(){
+    let text=$(this).text()
+    let num=parseInt($(this).siblings('span').text());
+    if(text==='讚'){
+        text=$(this).text('收回讚')
+        $(this).siblings('span').text(num+1)
+    }else{
+        text=$(this).text('讚')
+        $(this).siblings('span').text(num-1)
+    }
 })
 
 </script>

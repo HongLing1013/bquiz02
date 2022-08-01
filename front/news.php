@@ -1,6 +1,6 @@
 <fieldset>
     <legend>目前位置：首頁 > 最新文章區</legend>
-    <table>
+    <table id="news">
         <tr>
             <td width="30%">標題</td>
             <td width="50%">內容</td>
@@ -20,8 +20,11 @@
         ?>
 
         <tr>
-            <td><?=$row['title'];?></td>
-            <td><?=mb_substr($row['text'],0,20);?>...</td>
+            <td class="title"><?=$row['title'];?></td>
+            <td>
+                <span class="summary"><?=mb_substr($row['text'],0,20);?>...</span>
+                <span class="full" style='display:none'><?=nl2br($row['text']);?></span>
+            </td>
             <td></td>
         </tr>
 
@@ -33,23 +36,27 @@
     <div>
 
         <?php 
-        // 判斷有沒有上一頁
         if(($now-1)>0){
-          $p=$now-1;
-          echo "<a href='?do=news&p={$p}'> < </a>";
+            $p=$now-1;
+            echo "<a href='?do=news&p={$p}'> &lt; </a>";
         }
-
+        
         for($i=1;$i<=$pages;$i++){
             $fontsize=($now==$i)?'24px':'18px';
             echo "<a href='?do=news&p={$i}' style='font-size:{$fontsize}'> $i </a>";
         }
-
-        // 判斷有沒有下一頁
         if(($now+1)<=$pages){
-          $p=$now+1;
-          echo "<a href='?do=news&p={$p}'> > </a>";
+            $p=$now+1;
+            echo "<a href='?do=news&p={$p}'> &gt; </a>";
         }
         ?>
 
     </div>
 </fieldset>
+
+<script>
+$(".title").on("click",function(){
+    $(this).next().children().toggle()
+})
+
+</script>

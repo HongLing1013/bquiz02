@@ -33,11 +33,23 @@
     <div>
 
         <?php 
+        // 判斷有沒有上一頁
+        if(($now-1)>0){
+          $p=$now-1;
+          echo "<a href='?do=news&p={$p}'> < </a>";
+        }
+
         for($i=1;$i<=$pages;$i++){
             $fontsize=($now==$i)?'24px':'18px';
             echo "<a href='?do=news&p={$i}' style='font-size:{$fontsize}'> $i </a>";
         }
+
+        // 判斷有沒有下一頁
+        if(($now+1)<=$pages){
+          $p=$now+1;
+          echo "<a href='?do=news&p={$p}'> > </a>";
+        }
         ?>
-        
+
     </div>
 </fieldset>

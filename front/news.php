@@ -26,9 +26,13 @@
                 <span class="full" style='display:none'><?=nl2br($row['text']);?></span>
             </td>
             <td>                
-                <?php
+            <?php
                 if(isset($_SESSION['user'])){
-                    echo " - <a class='great' href='#'>讚</a>";
+                    if($Log->math('count','id',['news'=>$row['id'],'user'=>$_SESSION['user']])){
+                        echo "<a class='great' href='#' data-id='{$row['id']}'>收回讚</a>";
+                    }else{
+                        echo "<a class='great' href='#' data-id='{$row['id']}'>讚</a>";
+                    }
                 }
                 ?>
             </td>

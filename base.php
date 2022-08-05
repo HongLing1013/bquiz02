@@ -156,6 +156,4 @@ if(!isset($_SESSION['total'])){
   }
 }
 
-
-
 ?>

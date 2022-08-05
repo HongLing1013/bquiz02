@@ -70,7 +70,7 @@ a:hover
 {
 	display:inline-block;
 	width:78%;
-	height:520px;
+	height:530px;
 	padding:4px;
 	border:solid 1px #000000;
 	overflow:auto;
@@ -84,7 +84,7 @@ a:hover
 #bottom
 {
 	text-align:right;
-	/* padding:3px; */
+	padding:15px;
 }
 a.button
 {
